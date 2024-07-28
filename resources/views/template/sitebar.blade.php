@@ -57,5 +57,46 @@
         </a>
       </li>
       @endif
+      @if (Auth::user()->role == 'loading')
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Planing</span>
+        </li>
+        <li class="menu-item @yield('planing')">
+            <a href="{{ route('planing.loading') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-task"></i>
+              <div data-i18n="Account Settings">Planing</div>
+            </a>
+          </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Operator Loading</span>
+        </li>
+        <li class="menu-item @yield('loading')">
+            <a href="{{ route('operator.loading') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-chalkboard"></i>
+            <div data-i18n="Account Settings">Data</div>
+            </a>
+        </li>
+        <li class="menu-item @yield('hanger')">
+            <a href="{{ route('operator.loading.hanger') }}" class="menu-link">
+            <i class="menu-icon bx bx-shape-triangle"></i>
+            <div data-i18n="Account Settings">Hanger</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Print Tag</span>
+        </li>
+        <li class="menu-item @yield('printag')">
+            <a href="{{ route('printag.loading') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-bar-chart"></i>
+                <div data-i18n="Account Settings">Print Tag</div>
+            </a>
+        </li>
+        <li class="menu-item @yield('report')">
+            <a href="{{ route('report.loading') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-report"></i>
+              <div data-i18n="Account Settings">Daily Report</div>
+            </a>
+        </li>
+      @endif
     </ul>
   </aside>

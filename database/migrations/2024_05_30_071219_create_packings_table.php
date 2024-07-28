@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('qty_ok');
             $table->string('qty_ng');
             $table->string('remark');
+            $table->string('time_out');
             $table->timestamps();
         });
     }

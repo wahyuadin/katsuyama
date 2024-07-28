@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthentifikasiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HanggerController;
 use App\Http\Controllers\LoadingController;
 use App\Http\Controllers\PackingController;
 use App\Http\Controllers\PlaningController;
 use App\Http\Controllers\PrintagController;
+use App\Http\Controllers\ReportController;
 use App\Http\Middleware\SesiFalse;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +46,38 @@ Route::middleware(['role:admin'])->group(function () {
         });
         Route::prefix('profile')->group(function () {
             Route::get('/',[DashboardController::class,'dashboardProfile'])->name('profile.admin');
+            Route::put('{id}', [DashboardController::class, 'dashboardProfilePut'])->name('profile.admin.put');
+        });
+    });
+});
+Route::middleware(['role:loading'])->group(function () {
+    Route::prefix('operator_loading')->group(function () {
+        Route::get('/', [DashboardController::class, 'dashboardLoading'])->name('dashboard.loading');
+        Route::prefix('planing')->group(function () {
+            Route::get('/',[PlaningController::class,'loadingPlaning'])->name('planing.loading');
+        });
+        Route::prefix('data')->group(function () {
+            Route::get('/',[LoadingController::class,'OperatorLoading'])->name('operator.loading');
+            Route::post('/', [LoadingController::class, 'OperatorLoadingTambah'])->name('operator.loading.tambah');
+            Route::put('{id}', [LoadingController::class, 'OperatorLoadingEdit'])->name('edit.loading.admin');
+            Route::delete('{id}', [LoadingController::class, 'OperatorLoadingHapus'])->name('hapus.loading');
+        });
+        Route::prefix('hanger')->group(function () {
+            Route::get('/',[HanggerController::class,'OperatorLoadingHanger'])->name('operator.loading.hanger');
+            Route::post('/', [HanggerController::class, 'OperatorLoadingHangerTambah'])->name('operator.loading.hanger.tambah');
+            Route::put('{id}', [HanggerController::class, 'OperatorLoadingHangerEdit'])->name('operator.loading.hanger.edit');
+            Route::delete('{id}', [HanggerController::class, 'OperatorLoadingHangerHapus'])->name('operator.loading.hanger.hapus');
+        });
+        Route::prefix('print_tag')->group(function () {
+            Route::get('/',[PrintagController::class,'loadingPrintag'])->name('printag.loading');
+            Route::put('{id}', [PrintagController::class, 'loadingPrintagEdit'])->name('operator.loading.printag.edit');
+            Route::delete('{id}', [PrintagController::class, 'loadingPrintagHapus'])->name('operator.loading.printag.hapus');
+        });
+        Route::prefix('report')->group(function () {
+            Route::get('/',[ReportController::class,'LoadingReport'])->name('report.loading');
+        });
+        Route::prefix('profile')->group(function () {
+           Route::get('/', [DashboardController::class, 'ProfileLoading'])->name('profile.loading');
         });
     });
 });

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('printags', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('id_user')->references('id')->on('users')->cascadeOnDelete();
-            $table->date('tanggal');
-            $table->string('part_no');
-            $table->string('part_name');
-            $table->string('proses');
-            $table->string('next_proses');
-            $table->string('lot_no');
+            $table->foreignUuid('id_packing')->nullable()->references('id')->on('packings')->cascadeOnDelete();
+            $table->foreignUuid('id_loading')->nullable()->references('id')->on('loadings')->cascadeOnDelete();
+            $table->date('date')->nullable();
+            $table->string('proses')->nullable();
+            $table->string('next_proses')->nullable();
+            $table->string('lot_no')->nullable();
+            $table->string('qty')->nullable();
             $table->timestamps();
         });
     }

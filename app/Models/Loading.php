@@ -20,12 +20,16 @@ class Loading extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function hanger() {
+        return $this->belongsTo(Hangger::class, 'hangger_id');
+    }
+
     public static function show_all() {
         return Self::with('planing.user','user')->latest()->get();
     }
 
     public static function show_by_id($id) {
-        return Self::with('user')->where('id', $id)->latest()->get();
+        return Self::with('user','hanger.user')->where('user_id', $id)->latest()->get();
     }
 
     public static function tambah($data) {

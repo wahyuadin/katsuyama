@@ -52,4 +52,12 @@ class PlaningController extends Controller
             return redirect()->back();
         }
     }
+
+    // Role Loading
+    public function loadingPlaning() {
+        return view('loading.planing', [
+            'data'      => Planing::show_all(),
+            'date'      => now()->format('Y-m-d')
+        ]);
+    }
 }
