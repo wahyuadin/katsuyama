@@ -151,7 +151,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Hangger</label>
-                                <input type="text" name="hangger" class="form-control" value="{{ $data->hangger }}" required placeholder="Hangger"></input>
+                                <select name="hangger_id" class="form-select">
+                                    <option selected disabled>== Pilih Salah Satu ==</option>
+                                    @foreach ($hangger as $hanggerItem)
+                                        <option value="{{ $hanggerItem->id }}">Penanggung Jawab: {{ $hanggerItem->user->nama }}, Type: {{ $hanggerItem->type }}, QTY: {{ $hanggerItem->qty }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">QTY In</label>
@@ -173,7 +178,7 @@
                     <td>{{ $data->planing->part_no }}</td>
                     <td>{{ $data->planing->part_name }}</td>
                     <td>{{ $data->lot_no }}</td>
-                    <td>{{ $data->hangger }}</td>
+                    <td>{{ $data->hanger->type }} / {{ $data->hanger->qty }}</td>
                     <td>{{ $data->qty_in }}</td>
                     <td class="d-flex flex-column flex-sm-row">
                         <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $data->id }}" class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>

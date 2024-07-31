@@ -21,11 +21,11 @@ class Packing extends Model
     }
 
     public static function show_all() {
-        return Self::with('loading.user', 'user')->latest()->get();
+        return Self::with('loading.user', 'user', 'loading.hanger', 'loading.planing.user')->latest()->get();
     }
 
     public static function show_by_id($id) {
-        return Self::with('user')->where('id', $id)->latest()->get();
+        return Self::with('user','loading.user','loading.hangger')->where('user_id', $id)->latest()->get();
     }
 
     public static function printag() {

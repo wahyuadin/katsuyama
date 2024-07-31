@@ -20,7 +20,7 @@ class Report extends Model
     }
 
     public static function show_all() {
-        return Report::with('loading.planing','loading.user','loading.hanger','packing.loading')->latest()->get();
+        return Report::with('loading.planing','loading.user','loading.hanger','packing.loading', 'packing.user')->latest()->get();
     }
 
 }

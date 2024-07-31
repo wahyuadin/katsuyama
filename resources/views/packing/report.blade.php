@@ -98,32 +98,12 @@
                     <td>{{ $data->loading->qty_in }}</td>
                     <td>{{ $data->loading->time_in }}</td>
                     {{-- packing --}}
-                    <td>
-                        @isset($data->packing)
-                            {{ $data->packing->time_out ?? '-' }}
-                        @else
-                            -
-                        @endisset
-                    </td>
-                    <td>
-                        @isset($data->packing->user)
-                            {{ $data->packing->user->nama }}
-                        @else
-                            -
-                        @endisset
-                    </td>
-                    <td>
-                        {{ $data->packing->lot_no_edp ?? '-' }}
-                    </td>
-                    <td>
-                        {{ $data->packing->qty_ok ?? '-' }}
-                    </td>
-                    <td>
-                        {{ $data->packing->qty_ng ?? '-' }}
-                    </td>
-                    <td>
-                        {{ $data->packing->remark ?? '-' }}
-                    </td>
+                    <td>{{ $data->packing->time_out}}</td>
+                    <td>{{ $data->packing->user->nama }}</td>
+                    <td>{{ $data->packing->lot_no_edp }}</td>
+                    <td>{{ $data->packing->qty_ok }}</td>
+                    <td>{{ $data->packing->qty_ng }}</td>
+                    <td>{{ $data->packing->remark }}</td>
                 </tr>
                 @endforeach
                 </tbody>

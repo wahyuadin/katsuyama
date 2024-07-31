@@ -41,12 +41,12 @@
           <div data-i18n="Account Settings">Packing</div>
         </a>
       </li>
-      <li class="menu-item @yield('printag')">
-        <a href="{{ route('printag.admin') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-bar-chart"></i>
-          <div data-i18n="Account Settings">Print Tag</div>
-        </a>
-      </li>
+        <li class="menu-item @yield('report')">
+            <a href="{{ route('report.admin') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-report"></i>
+            <div data-i18n="Account Settings">Daily Report</div>
+            </a>
+        </li>
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">management</span>
       </li>
@@ -59,7 +59,7 @@
       @endif
       @if (Auth::user()->role == 'loading')
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Planing</span>
+            <span class="menu-header-text">Data Planing</span>
         </li>
         <li class="menu-item @yield('planing')">
             <a href="{{ route('planing.loading') }}" class="menu-link">
@@ -68,7 +68,7 @@
             </a>
           </li>
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Operator Loading</span>
+            <span class="menu-header-text">Data Loading</span>
         </li>
         <li class="menu-item @yield('loading')">
             <a href="{{ route('operator.loading') }}" class="menu-link">
@@ -83,7 +83,7 @@
             </a>
         </li>
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Print Tag</span>
+            <span class="menu-header-text">Data Report</span>
         </li>
         <li class="menu-item @yield('printag')">
             <a href="{{ route('printag.loading') }}" class="menu-link">
@@ -93,6 +93,50 @@
         </li>
         <li class="menu-item @yield('report')">
             <a href="{{ route('report.loading') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-report"></i>
+              <div data-i18n="Account Settings">Daily Report</div>
+            </a>
+        </li>
+      @endif
+      @if (Auth::user()->role == 'packing')
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Data Planing</span>
+        </li>
+        <li class="menu-item @yield('planing')">
+            <a href="{{ route('planing.packing') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-task"></i>
+              <div data-i18n="Account Settings">Planing</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Data Loading</span>
+        </li>
+        <li class="menu-item @yield('loading')">
+            <a href="{{ route('loading.packing') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-chalkboard"></i>
+            <div data-i18n="Account Settings">Data</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Data Packing</span>
+        </li>
+        <li class="menu-item @yield('packing')">
+            <a href="{{ route('operator.packing') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-package"></i>
+            <div data-i18n="Account Settings">Data</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Data Report</span>
+        </li>
+        <li class="menu-item @yield('printag')">
+            <a href="{{ route('printag.packing') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-bar-chart"></i>
+                <div data-i18n="Account Settings">Print Tag</div>
+            </a>
+        </li>
+        <li class="menu-item @yield('report')">
+            <a href="{{ route('report.packing') }}" class="menu-link">
               <i class="menu-icon tf-icons bx bxs-report"></i>
               <div data-i18n="Account Settings">Daily Report</div>
             </a>

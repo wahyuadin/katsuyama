@@ -60,4 +60,12 @@ class PlaningController extends Controller
             'date'      => now()->format('Y-m-d')
         ]);
     }
+
+    // Role packing
+    public function loadingPacking() {
+        return view('packing.planing', [
+            'data'      => Planing::show_all(),
+            'date'      => now()->format('Y-m-d')
+        ]);
+    }
 }

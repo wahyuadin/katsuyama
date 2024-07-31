@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('loading_id')->references('id')->on('loadings')->cascadeOnDelete();
             $table->foreignUuid('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('lot_no_edp');
             $table->string('qty_ok');
             $table->string('qty_ng');
             $table->string('remark');

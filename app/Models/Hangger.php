@@ -17,7 +17,7 @@ class Hangger extends Model
     }
 
     public static function show_all() {
-        return Hangger::all();
+        return Self::with('user')->latest()->get();
     }
 
     public static function show_by_id($id) {

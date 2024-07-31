@@ -49,7 +49,26 @@ class PrintagController extends Controller
         }
     }
 
-    public function LoadingReport() {
+    // Role Packing
+    public function packingPrintag() {
+        confirmDelete('Hapus Data', 'Apakah Anda Yakin Menghapus Data ?');
+        return view('packing.printag', [
+            'data' => Printag::show_id_packing(),
+            'date'  => now()->format('Y-m-d')
+        ]);
+    }
 
+    public function packingPrintagEdit(Request $request, $id) {
+        $this->validate($request, [
+            'proses'        => 'required',
+            'next_proses'   => 'required',
+            'lot_no'        => 'required',
+            'qty'           => 'required'
+        ]);
+
+        if (Printag::find($id)->update($request->except('__token'))) {
+            Alert::success('Berhasil', 'Data Berhasil Diedit!');
+            return redirect()->back();
+        }
     }
 }

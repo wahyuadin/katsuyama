@@ -83,7 +83,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Edit Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('operator.loading.printag.edit', ['id' => $data->id]) }}" method="POST">
+                        <form action="{{ route('operator.packing.printag.edit', ['id' => $data->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -93,23 +93,23 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Tanggal Planing</label>
-                                <input type="text" class="form-control" value="{{$data->loading->planing->tanggal }}" required readonly>
+                                <input type="text" class="form-control" value="{{$data->packing->loading->planing->tanggal }}" required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Part No</label>
-                                <input type="text" class="form-control" value="{{$data->loading->planing->part_no }}" required readonly>
+                                <input type="text" class="form-control" value="{{$data->packing->loading->planing->part_no }}" required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Part Name</label>
-                                <input type="text" class="form-control" value="{{$data->loading->planing->part_name }}" required readonly>
+                                <input type="text" class="form-control" value="{{$data->packing->loading->planing->part_name }}" required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Lot No</label>
-                                <input type="number" name="lot_no" class="form-control" value="{{ $data->loading->lot_no }}" required placeholder="Lot No" readonly></input>
+                                <input type="number" name="lot_no" class="form-control" value="{{ $data->packing->loading->lot_no }}" required placeholder="Lot No" readonly></input>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">QTY</label>
-                                <input type="number" name="qty" class="form-control" value="{{ $data->loading->qty_in }}" required placeholder="Qty" readonly></input>
+                                <input type="number" name="qty" class="form-control" value="{{ $data->packing->loading->qty_in }}" required placeholder="Qty" readonly></input>
                             </div>
                             <hr>
                             <div class="mb-3">
@@ -146,16 +146,16 @@
                 </div>
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $data->loading->planing->tanggal }}</td>
-                    <td>{{ $data->loading->planing->part_no }}</td>
-                    <td>{{ $data->loading->planing->part_name }}</td>
+                    <td>{{ $data->packing->loading->planing->tanggal }}</td>
+                    <td>{{ $data->packing->loading->planing->part_no }}</td>
+                    <td>{{ $data->packing->loading->planing->part_name }}</td>
                     <td>{{ $data->proses ? $data->proses : '-'  }}</td>
                     <td>{{ $data->next_proses ? $data->next_proses : '-' }}</td>
-                    <td>{{ $data->loading->lot_no ? $data->loading->lot_no : '-' }}</td>
-                    <td>{{ $data->loading->qty_in ? $data->loading->qty_in : '-' }}</td>
+                    <td>{{ $data->packing->loading->lot_no ? $data->packing->loading->lot_no : '-' }}</td>
+                    <td>{{ $data->packing->loading->qty_in ? $data->packing->loading->qty_in : '-' }}</td>
                     <td class="d-flex flex-column flex-sm-row">
                         <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $data->id }}" class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
-                        {{-- <a href="{{ route('operator.loading.printag.hapus',['id' => $data->loading->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a> --}}
+                        {{-- <a href="{{ route('operator.packing.printag.hapus',['id' => $data->packing->loading->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a> --}}
                     </td>
                 </tr>
                 @endforeach

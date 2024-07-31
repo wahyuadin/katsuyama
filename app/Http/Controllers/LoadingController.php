@@ -18,15 +18,16 @@ class LoadingController extends Controller
         confirmDelete('Hapus Data', 'Apakah Anda Yakin Menghapus Data ?');
         return view('admin.loading', [
             'data'      => Loading::show_all(),
+            'hangger'   => Hangger::show_all(),
             'date'      => now()->format('Y-m-d')
         ]);
     }
 
     public function adminLoadingEdit(Request $request, $id) {
         $this->validate($request, [
-            'lot_no'    => 'required',
-            'hangger'   => 'required',
-            'qty_in'    => 'required'
+            'lot_no'        => 'required',
+            'hangger_id'    => 'required',
+            'qty_in'        => 'required'
         ]);
 
         if (Loading::ubah($id, $request->all())) {
@@ -96,5 +97,15 @@ class LoadingController extends Controller
             Alert::success('Berhasil','Data Berhasil Di Hapus!');
             return redirect()->back();
         }
+    }
+
+    // operator packing
+    public function loadingPacking() {
+        return view('packing.loading', [
+            'data'      => Loading::show_all(),
+            'planing'   => Planing::show_all(),
+            'hanger'    => Hangger::show_by_id(Auth::user()->id),
+            'date'      => now()->format('Y-m-d')
+        ]);
     }
 }

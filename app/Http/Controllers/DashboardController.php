@@ -113,15 +113,20 @@ class DashboardController extends Controller
 
     // Loading
     public function dashboardLoading() {
-        return view('admin.dashboard');
-    }
-
-    public function OperatorLoading() {
-
+        return view('loading.dashboard');
     }
 
     public function ProfileLoading() {
-        return view('admin.profile');
+        return view('loading.profile');
+    }
+
+    // packing
+    public function dashboardPacking() {
+        return view('packing.dashboard');
+    }
+
+    public function ProfilePacking() {
+        return view('packing.profile');
     }
 
 }

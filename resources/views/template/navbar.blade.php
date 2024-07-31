@@ -44,7 +44,7 @@
                   </div>
                   <div class="flex-grow-1">
                     <span class="fw-semibold d-block">{{ ucwords(Auth::user()->nama) }}</span>
-                    <small class="text-muted">{{ ucwords(Auth::user()->role) }}</small>
+                    <small class="text-muted">Operator {{ ucwords(Auth::user()->role) }}</small>
                   </div>
                 </div>
               </a>

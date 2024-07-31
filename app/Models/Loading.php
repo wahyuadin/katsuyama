@@ -25,7 +25,7 @@ class Loading extends Model
     }
 
     public static function show_all() {
-        return Self::with('planing.user','user')->latest()->get();
+        return Self::with('planing.user','user','hanger.user')->latest()->get();
     }
 
     public static function show_by_id($id) {

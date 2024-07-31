@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="settings">
-                        <form method="POST" action="{{ route('profile.admin.put', ['id' => Auth::user()->id]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('profile.loading.put', ['id' => Auth::user()->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row g-3">
@@ -98,7 +98,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('profile.admin.put', ['id' => Auth::user()->id]) }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('profile.loading.put', ['id' => Auth::user()->id]) }}" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama" value="{{ Auth::user()->nama }}" readonly hidden>

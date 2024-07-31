@@ -140,7 +140,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Edit Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('edit.loading.admin', ['id' => $data->id]) }}" method="POST">
+                        <form action="{{ route('operator.loading.edit', ['id' => $data->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">

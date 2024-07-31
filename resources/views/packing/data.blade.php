@@ -3,14 +3,14 @@
 @section('content')
   <!-- Modal -->
   {{-- add data --}}
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Tambah Data</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('tambah.planing.admin') }}" method="POST">
+        <form action="{{ route('operator.packing.tambah') }}" method="POST">
         @csrf
         <div class="modal-body">
             <div class="mb-3">
@@ -19,20 +19,33 @@
                 <input type="text" name="user_id" class="form-control" value="{{ Auth::user()->id }}" required readonly hidden>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Tanggal</label>
-                <input type="date" name="tanggal" class="form-control" value="{{ $date }}" required></input>
+                <label for="exampleFormControlTextarea1" class="form-label">Loading</label>
+                <select name="loading_id" class="form-control" required>
+                    <option selected disabled>== Pilih Salah Satu ==</option>
+                    @foreach ($loading as $loadingItem)
+                        <option value="{{ $loadingItem->id }}">Tanggal: {{ $loadingItem->planing->tanggal }}, Penanggung jawab: {{ $loadingItem->user->nama }}, Part Number: {{ $loadingItem->planing->part_no}}, Part Name: {{ $loadingItem->planing->part_name}}, QTY: {{ $loadingItem->planing->qty}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Part No</label>
-                <input type="text" name="part_no" class="form-control" value="{{ old('part_no') }}" required placeholder="Part No"></input>
+                <label for="exampleFormControlTextarea1" class="form-label">Lot No EDP</label>
+                <input type="number" name="lot_no_edp" class="form-control" value="{{ old('lot_no_edp') }}" required placeholder="QTY OK"></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Part Name</label>
-                <input type="text" name="part_name" class="form-control" value="{{ old('part_name') }}" required placeholder="Part Name"></input>
+                <label for="exampleFormControlTextarea1" class="form-label">QTY OK</label>
+                <input type="number" name="qty_ok" class="form-control" value="{{ old('qty_ok') }}" required placeholder="QTY OK"></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">QTY</label>
-                <input type="number" name="qty" class="form-control" value="{{ old('qty') }}" required placeholder="Qty"></input>
+                <label for="exampleFormControlTextarea1" class="form-label">QTY NG</label>
+                <input type="number" name="qty_ng" class="form-control" value="{{ old('qty_ng') }}" required placeholder="QTY NG"></input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Remark</label>
+                <textarea class="form-control" name="remark" rows="5">{{ old('remark') }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Time Output</label>
+                <input type="date" name="time_out" class="form-control" value="{{ old('time_out') }}" required placeholder="Time Input"></input>
             </div>
         </div>
         <div class="modal-footer">
@@ -85,7 +98,8 @@
             </div>
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print"><i class='bx bx-filter-alt' ></i></button>
+                    <button class="btn btn-primary" style="margin-right: 5px" data-bs-toggle="modal" data-bs-target="#add"><i class='bx bx-plus'></i></button>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print"><i class='bx bx-filter-alt'></i></button>
                 </div>
             </div>
         </div>
@@ -126,9 +140,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Edit Data</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('edit.packing.admin', ['id' => $data->id]) }}" method="POST">
+                        <form action="{{ route('operator.packing.edit', ['id' => $data->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -162,9 +176,6 @@
                                 <label for="exampleFormControlInput1" class="form-label">Loading</label>
                                 <select name="loading_id" class="form-control" required>
                                     <option selected disabled>== Pilih Salah Satu ==</option>
-                                    @php
-                                        $loading = App\Models\Loading::all();
-                                    @endphp
                                     @foreach ($loading as $loadingData)
                                         <option value="{{ $loadingData->id }}">Tanggal: {{ $loadingData->planing->tanggal }}, Penanggung jawab: {{ $loadingData->user->nama }}, Part Number: {{ $loadingData->planing->part_no}}, Part Name: {{ $loadingData->planing->part_name}}, QTY: {{ $loadingData->planing->qty}}</option>
                                     @endforeach
@@ -193,6 +204,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                         </form>
                     </div>
@@ -214,7 +226,7 @@
                     <td>{{ $data->time_out }}</td>
                     <td class="d-flex flex-column flex-sm-row">
                         <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $data->id }}" class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
-                        <a href="{{ route('hapus.packing.admin',['id' => $data->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a>
+                        {{-- <a href="{{ route('operator.packing.hapus',['id' => $data->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a> --}}
                     </td>
                 </tr>
                 @endforeach
