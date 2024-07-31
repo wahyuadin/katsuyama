@@ -45,7 +45,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Time Output</label>
-                <input type="date" name="time_out" class="form-control" value="{{ old('time_out') }}" required placeholder="Time Input"></input>
+                <input type="time" name="time_out" class="form-control" value="{{ old('time_out') }}" required placeholder="Time Input"></input>
             </div>
         </div>
         <div class="modal-footer">
@@ -199,7 +199,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Time Output</label>
-                                <input type="date" name="time_out" class="form-control" value="{{ $data->time_out }}" required placeholder="Time Input"></input>
+                                <input type="time" name="time_out" class="form-control" value="{{ $data->time_out }}" required placeholder="Time Input"></input>
                             </div>
                         </div>
                         <div class="modal-footer">

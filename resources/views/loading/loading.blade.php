@@ -38,7 +38,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Lot No</label>
-                <input type="number" name="lot_no" class="form-control" value="{{ old('lot_no') }}" required placeholder="Lot No"></input>
+                <input type="text" name="lot_no" class="form-control" value="{{ old('lot_no') }}" required placeholder="Lot No"></input>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">QTY Input</label>
@@ -46,43 +46,12 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Time Input</label>
-                <input type="date" name="time_in" class="form-control" value="{{ old('time_in') }}" required placeholder="Time Input"></input>
+                <input type="time" name="time_in" class="form-control" value="{{ old('time_in') }}" required placeholder="Time Input"></input>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  {{-- end modal --}}
-  {{-- Print --}}
-  <div class="modal fade" id="print" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Filter Data</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="POST">
-        @csrf
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-3 col-md-4">
-                    <input class="form-control" type="date" value="{{ $date }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <center><label for="exampleFormControlInput1" class="form-label mt-2">S/d</label></center>
-                </div>
-                <div class="col-3 col-md-4">
-                    <input class="form-control" name="akhir" type="date" value="{{ old('akhir') }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <button class="btn btn-primary bx bx-filter-alt"></button>
-                </div>
-            </div>
         </div>
         </form>
       </div>
@@ -100,7 +69,6 @@
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-primary" style="margin-right: 5px" data-bs-toggle="modal" data-bs-target="#add"><i class='bx bx-plus'></i></button>
-                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print"><i class='bx bx-filter-alt'></i></button>
                 </div>
             </div>
         </div>
@@ -163,7 +131,7 @@
                             <hr>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Lot No</label>
-                                <input type="number" name="lot_no" class="form-control" value="{{ $data->lot_no }}" required placeholder="Lot No"></input>
+                                <input type="text" name="lot_no" class="form-control" value="{{ $data->lot_no }}" required placeholder="Lot No"></input>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Hangger</label>
@@ -180,7 +148,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Time Input</label>
-                                <input type="date" name="time_in" class="form-control" value="{{ $data->time_in }}" required placeholder="Qty In"></input>
+                                <input type="time" name="time_in" class="form-control" value="{{ $data->time_in }}" required placeholder="Qty In"></input>
                             </div>
                         </div>
                         <div class="modal-footer">

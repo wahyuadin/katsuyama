@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Loading;
 use App\Models\Packing;
 use App\Models\Printag;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Faker\Factory as Faker;
 
 class PrintagController extends Controller
 {
@@ -46,6 +48,32 @@ class PrintagController extends Controller
         if (Loading::find($id)->delete()) {
             Alert::success('Berhasil','Data Berhasil Di Hapus!');
             return redirect()->back();
+        }
+    }
+
+    public function pdfLoading() {
+        try {
+            $faker = Faker::create();
+            $data = Printag::show_by_id(Auth::user()->id);
+            $pdf = Pdf::loadView('pdf.printag', ['data' => $data]);
+            $pdf->setPaper(array(0,0,600,400), 'portrait');
+            $randomNumber = $faker->numberBetween(10000, 99999);
+            $fileName = 'Printag-' . $randomNumber . '.pdf';return $pdf->stream($fileName);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function pdfPacking() {
+        try {
+            $faker = Faker::create();
+            $data = Printag::show_id_packing(Auth::user()->id);
+            $pdf = Pdf::loadView('pdf.printag', ['data' => $data]);
+            $pdf->setPaper(array(0,0,600,400), 'portrait');
+            $randomNumber = $faker->numberBetween(10000, 99999);
+            $fileName = 'Printag-' . $randomNumber . '.pdf';return $pdf->stream($fileName);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

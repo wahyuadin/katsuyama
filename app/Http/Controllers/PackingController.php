@@ -60,7 +60,7 @@ class PackingController extends Controller
             'time_out'      => 'required'
         ]);
 
-        $packing = Packing::create($request->except('__token'));
+        $packing = Packing::create($request->all());
         if ($packing) {
             $id_packing = $packing->id;
             if (Printag::create(['id_packing' => $id_packing])) {
@@ -68,6 +68,9 @@ class PackingController extends Controller
                     Alert::success('Berhasil', 'Data Berhasil Ditambah!');
                     return redirect()->back();
                 }
+                Report::create(['id_packing' => $id_packing]);
+                Alert::success('Berhasil', 'Data Berhasil Ditambah!');
+                return redirect()->back();
             }
         }
     }

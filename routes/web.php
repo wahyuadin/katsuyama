@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthentifikasiController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HanggerController;
 use App\Http\Controllers\LoadingController;
@@ -70,6 +71,7 @@ Route::middleware(['role:loading'])->group(function () {
         });
         Route::prefix('print_tag')->group(function () {
             Route::get('/',[PrintagController::class,'loadingPrintag'])->name('printag.loading');
+            Route::get('print', [PrintagController::class, 'pdfLoading'])->name('loading.pdf');
             Route::put('{id}', [PrintagController::class, 'loadingPrintagEdit'])->name('operator.loading.printag.edit');
             Route::delete('{id}', [PrintagController::class, 'loadingPrintagHapus'])->name('operator.loading.printag.hapus');
         });
@@ -94,6 +96,7 @@ Route::middleware(['role:packing'])->group(function () {
             Route::delete('{id}', [PackingController::class, 'OperatorPackingHapus'])->name('operator.packing.hapus');
        });
        Route::prefix('print_tag')->group(function () {
+            Route::get('print', [PrintagController::class, 'pdfPacking'])->name('packing.pdf');
             Route::get('/', [PrintagController::class, 'packingPrintag'])->name('printag.packing');
             Route::put('{id}', [PrintagController::class, 'packingPrintagEdit'])->name('operator.packing.printag.edit');
             Route::delete('{id}', [PrintagController::class, 'packingPrintagHapus'])->name('operator.packing.printag.hapus');

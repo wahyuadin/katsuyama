@@ -44,7 +44,7 @@
             </div>
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary" style="margin-left:1.5px"><i class='bx bx-printer'></i></button>
+                    <a href="{{ route('packing.pdf') }}" class="btn btn-primary" style="margin-left:1.5px"><i class='bx bx-printer'></i></a>
                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">QTY</label>
-                                <input type="number" name="qty" class="form-control" value="{{ $data->packing->loading->qty_in }}" required placeholder="Qty" readonly></input>
+                                <input type="number" name="qty" class="form-control" value="{{ $data->packing->loading->planing->qty }}" required placeholder="Qty" readonly></input>
                             </div>
                             <hr>
                             <div class="mb-3">
@@ -152,7 +152,7 @@
                     <td>{{ $data->proses ? $data->proses : '-'  }}</td>
                     <td>{{ $data->next_proses ? $data->next_proses : '-' }}</td>
                     <td>{{ $data->packing->loading->lot_no ? $data->packing->loading->lot_no : '-' }}</td>
-                    <td>{{ $data->packing->loading->qty_in ? $data->packing->loading->qty_in : '-' }}</td>
+                    <td>{{ $data->packing->loading->planing->qty ? $data->packing->loading->planing->qty : '-' }}</td>
                     <td class="d-flex flex-column flex-sm-row">
                         <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $data->id }}" class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
                         {{-- <a href="{{ route('operator.packing.printag.hapus',['id' => $data->packing->loading->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a> --}}
