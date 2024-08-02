@@ -30,7 +30,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Lot No EDP</label>
-                <input type="number" name="lot_no_edp" class="form-control" value="{{ old('lot_no_edp') }}" required placeholder="Lot No EDP"></input>
+                <input type="text" name="lot_no_edp" class="form-control" value="{{ old('lot_no_edp') }}" required placeholder="Lot No EDP"></input>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">QTY OK</label>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Lot No EDP</label>
-                                <input type="number" name="lot_no_edp" class="form-control" value="{{ $data->lot_no_edp }}" required>
+                                <input type="text" name="lot_no_edp" class="form-control" value="{{ $data->lot_no_edp }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">QTY OK</label>

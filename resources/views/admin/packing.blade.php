@@ -172,7 +172,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Lot No EDP</label>
-                                <input type="number" name="lot_no_edp" class="form-control" value="{{ $data->lot_no_edp }}" required>
+                                <input type="text" name="lot_no_edp" class="form-control" value="{{ $data->lot_no_edp }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">QTY OK</label>
@@ -214,7 +214,7 @@
                     <td>{{ $data->time_out }}</td>
                     <td class="d-flex flex-column flex-sm-row">
                         <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $data->id }}" class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
-                        <a href="{{ route('hapus.packing.admin',['id' => $data->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a>
+                        {{-- <a href="{{ route('hapus.packing.admin',['id' => $data->id]) }}" class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a> --}}
                     </td>
                 </tr>
                 @endforeach
