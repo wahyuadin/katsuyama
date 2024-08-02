@@ -44,7 +44,7 @@
             </div>
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary"><i class='bx bx-printer'></i></button>
+                    <a href="{{ route('pdf.report.loading') }}" class="btn btn-primary"><i class='bx bx-printer'></i></a>
                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button>
                 </div>
             </div>

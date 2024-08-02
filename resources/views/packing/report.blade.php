@@ -44,7 +44,7 @@
             </div>
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary"><i class='bx bx-printer'></i></button>
+                    <a href="{{ route('pdf.report.packing') }}" class="btn btn-primary"><i class='bx bx-printer'></i></a>
                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button>
                 </div>
             </div>
@@ -98,12 +98,48 @@
                     <td>{{ $data->loading->qty_in }}</td>
                     <td>{{ $data->loading->time_in }}</td>
                     {{-- packing --}}
-                    <td>{{ $data->packing->time_out}}</td>
-                    <td>{{ $data->packing->user->nama }}</td>
-                    <td>{{ $data->packing->lot_no_edp }}</td>
-                    <td>{{ $data->packing->qty_ok }}</td>
-                    <td>{{ $data->packing->qty_ng }}</td>
-                    <td>{{ $data->packing->remark }}</td>
+                    <td>
+                        @isset($data->packing->time_out)
+                            {{ $data->packing->time_out }}
+                        @else
+                            -
+                        @endisset
+                    </td>
+                    <td>
+                        @isset($data->packing->user->nama)
+                            {{ $data->packing->user->nama }}
+                        @else
+                            -
+                        @endisset
+                    </td>
+                    <td>
+                        @isset($data->packing->lot_no_edp)
+                            {{ $data->packing->lot_no_edp }}
+                        @else
+                            -
+                        @endisset
+                    </td>
+                    <td>
+                        @isset($data->packing->qty_ok)
+                            {{ $data->packing->qty_ok }}
+                        @else
+                            -
+                        @endisset
+                    </td>
+                    <td>
+                        @isset($data->packing->qty_ng)
+                            {{ $data->packing->qty_ng }}
+                        @else
+                            -
+                        @endisset
+                    </td>
+                    <td>
+                        @isset($data->packing->remark)
+                            {{ $data->packing->remark }}
+                        @else
+                            -
+                        @endisset
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

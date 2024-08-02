@@ -23,13 +23,14 @@
                 <select name="loading_id" class="form-control" required>
                     <option selected disabled>== Pilih Salah Satu ==</option>
                     @foreach ($loading as $loadingItem)
-                        <option value="{{ $loadingItem->id }}">Tanggal: {{ $loadingItem->planing->tanggal }}, Penanggung jawab: {{ $loadingItem->user->nama }}, Part Number: {{ $loadingItem->planing->part_no}}, Part Name: {{ $loadingItem->planing->part_name}}, QTY: {{ $loadingItem->planing->qty}}</option>
+                        <option value="{{ $loadingItem->id }}">Tanggal: {{ $loadingItem->planing->tanggal }}, Penanggung jawab: {{ $loadingItem->user->nama }}, Part Number: {{ $loadingItem->planing->part_no}}, Part Name: {{ $loadingItem->planing->part_name}}, Lot No: {{ $loadingItem->lot_no}}, QTY In: {{ $loadingItem->qty_in, }}, Time Input: {{ $loadingItem->time_in }}</option>
+                        {{-- <option value="{{ $loadingItem->id }}">Tanggal: {{ $loadingItem->planing->tanggal }}, Penanggung jawab: {{ $loadingItem->user->nama }}, Part Number: {{ $loadingItem->planing->part_no}}, Part Name: {{ $loadingItem->planing->part_name}}, QTY: {{ $loadingItem->planing->qty}}</option> --}}
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Lot No EDP</label>
-                <input type="number" name="lot_no_edp" class="form-control" value="{{ old('lot_no_edp') }}" required placeholder="QTY OK"></input>
+                <input type="number" name="lot_no_edp" class="form-control" value="{{ old('lot_no_edp') }}" required placeholder="Lot No EDP"></input>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">QTY OK</label>
@@ -57,37 +58,6 @@
     </div>
   </div>
   {{-- end modal --}}
-  {{-- Print --}}
-  <div class="modal fade" id="print" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Filter Data</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="POST">
-        @csrf
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-3 col-md-4">
-                    <input class="form-control" type="date" value="{{ $date }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <center><label for="exampleFormControlInput1" class="form-label mt-2">S/d</label></center>
-                </div>
-                <div class="col-3 col-md-4">
-                    <input class="form-control" name="akhir" type="date" value="{{ old('akhir') }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <button class="btn btn-primary bx bx-filter-alt"></button>
-                </div>
-            </div>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  {{-- end modal --}}
 
 <div class="card w-100">
     <div class="card-body">
@@ -99,7 +69,6 @@
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-primary" style="margin-right: 5px" data-bs-toggle="modal" data-bs-target="#add"><i class='bx bx-plus'></i></button>
-                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print"><i class='bx bx-filter-alt'></i></button>
                 </div>
             </div>
         </div>
@@ -177,7 +146,7 @@
                                 <select name="loading_id" class="form-control" required>
                                     <option selected disabled>== Pilih Salah Satu ==</option>
                                     @foreach ($loading as $loadingData)
-                                        <option value="{{ $loadingData->id }}">Tanggal: {{ $loadingData->planing->tanggal }}, Penanggung jawab: {{ $loadingData->user->nama }}, Part Number: {{ $loadingData->planing->part_no}}, Part Name: {{ $loadingData->planing->part_name}}, QTY: {{ $loadingData->planing->qty}}</option>
+                                        <option value="{{ $loadingData->id }}">Tanggal: {{ $loadingData->planing->tanggal }}, Penanggung jawab: {{ $loadingData->user->nama }}, Part Number: {{ $loadingData->planing->part_no}}, Part Name: {{ $loadingData->planing->part_name}}, Lot No: {{ $loadingData->lot_no}}, QTY In: {{ $loadingData->qty_in, }}, Time Input: {{ $loadingData->time_in }}</option>
                                     @endforeach
                                 </select>
                             </div>

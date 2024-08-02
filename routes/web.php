@@ -38,6 +38,7 @@ Route::middleware(['role:admin'])->group(function () {
         });
         Route::prefix('report')->group(function () {
             Route::get('/',[ReportController::class,'adminReport'])->name('report.admin');
+            Route::get('print', [ReportController::class, 'pdf'])->name('pdf.report.admin');
         });
         Route::prefix('user')->group(function () {
             Route::get('/', [DashboardController::class, 'dashboardUser'])->name('user.admin');
@@ -77,6 +78,7 @@ Route::middleware(['role:loading'])->group(function () {
         });
         Route::prefix('report')->group(function () {
             Route::get('/',[ReportController::class,'LoadingReport'])->name('report.loading');
+            Route::get('print', [ReportController::class, 'pdf'])->name('pdf.report.loading');
         });
         Route::prefix('profile')->group(function () {
            Route::get('/', [DashboardController::class, 'ProfileLoading'])->name('profile.loading');
@@ -103,6 +105,7 @@ Route::middleware(['role:packing'])->group(function () {
        });
        Route::prefix('report')->group(function () {
             Route::get('/', [ReportController::class,'PackingReport'])->name('report.packing');
+            Route::get('print', [ReportController::class,'pdf'])->name('pdf.report.packing');
        });
        Route::prefix('profile')->group(function () {
             Route::get('/', [DashboardController::class, 'ProfilePacking'])->name('profile.packing');
@@ -111,4 +114,5 @@ Route::middleware(['role:packing'])->group(function () {
     });
 });
 Route::get('/logout', [AuthentifikasiController::class,'logout'])->name('logout');
+Route::get('/pdf', [Controller::class, 'pdf']);
 
