@@ -3,38 +3,6 @@
 @section('content')
 
 {{-- @dd($data) --}}
-
-{{-- Print --}}
-<div class="modal fade" id="print" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ config('app.name') }} || Filter Data</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="POST">
-        @csrf
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-3 col-md-4">
-                    <input class="form-control" type="date" value="{{ $date }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <center><label for="exampleFormControlInput1" class="form-label mt-2">S/d</label></center>
-                </div>
-                <div class="col-3 col-md-4">
-                    <input class="form-control" name="akhir" type="date" value="{{ old('akhir') }}">
-                </div>
-                <div class="col-3 col-md-2">
-                    <button class="btn btn-primary bx bx-filter-alt"></button>
-                </div>
-            </div>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  {{-- end modal --}}
 <div class="card w-100">
     <div class="card-body">
         <div id="adobe-dc-view"></div>
@@ -45,7 +13,6 @@
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('loading.pdf') }}" class="btn btn-primary" style="margin-left:1.5px"><i class='bx bx-printer'></i></a>
-                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button>
                 </div>
             </div>
         </div>

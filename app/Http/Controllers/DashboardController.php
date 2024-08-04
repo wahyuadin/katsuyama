@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loading;
+use App\Models\Packing;
+use App\Models\Planing;
+use App\Models\Report;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,7 +19,55 @@ class DashboardController extends Controller
 {
     // Admin
     public function dashboardAdmin() {
-        return view('admin.dashboard');
+        function data_user() {
+            $startDate = now()->subMonths(10)->startOfMonth();
+            $endDate = now()->endOfMonth();
+
+            $results = User::select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count'))
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+                ->orderBy(DB::raw('YEAR(created_at)'))
+                ->orderBy(DB::raw('MONTH(created_at)'))
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    $monthYear = $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT);
+                    return [$monthYear => $item->count];
+                })
+                ->toArray();
+
+            $monthlyCounts = [];
+            $currentDate = now()->startOfMonth();
+
+            for ($i = 0; $i < 10; $i++) {
+                $monthYear = $currentDate->format('Y-m');
+                $monthlyCounts[] = $results[$monthYear] ?? 0;
+                $currentDate->subMonth();
+            }
+            return $monthlyCounts;
+        }
+
+        function daily_report() {
+            $currentYear = now()->year;
+            $results = Report::select(DB::raw('MONTH(created_at) as month, COUNT(*) as count'))
+                ->whereYear('created_at', $currentYear)
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->orderBy(DB::raw('MONTH(created_at)'))
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    return [$item->month => $item->count];
+                })->toArray();
+
+            $data = [];
+            for ($month = 1; $month <= 12; $month++) {
+                $data[] = $results[$month] ?? 0;
+            }
+            return $data;
+        }
+
+        return view('admin.dashboard' , [
+            'data_user'     => json_encode(data_user()),
+            'daily_report'  => json_encode(daily_report()),
+        ]);
     }
 
     public function dashboardProfile() {
@@ -113,7 +166,34 @@ class DashboardController extends Controller
 
     // Loading
     public function dashboardLoading() {
-        return view('loading.dashboard');
+        function pie() {
+            $data = [];
+            $data[] = Planing::all()->count();
+            $data[] = Loading::where('user_id', Auth::user()->id)->count();
+            return $data;
+        }
+
+        function report() {
+            $currentYear = now()->year;
+            $results = Report::select(DB::raw('MONTH(created_at) as month, COUNT(*) as count'))
+                ->whereYear('created_at', $currentYear)
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->orderBy(DB::raw('MONTH(created_at)'))
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    return [$item->month => $item->count];
+                })->toArray();
+
+            $data = [];
+            for ($month = 1; $month <= 12; $month++) {
+                $data[] = $results[$month] ?? 0;
+            }
+            return $data;
+        }
+        return view('loading.dashboard' , [
+            'pie'       => json_encode(pie()),
+            'report'    => json_encode(report())
+        ]);
     }
 
     public function ProfileLoading() {
@@ -122,7 +202,35 @@ class DashboardController extends Controller
 
     // packing
     public function dashboardPacking() {
-        return view('packing.dashboard');
+        function pie_packing() {
+            $data = [];
+            $data[] = Planing::all()->count();
+            $data[] = Loading::all()->count();
+            $data[] = Packing::where('user_id', Auth::user()->id)->count();
+            return $data;
+        }
+        function report_packing() {
+            $currentYear = now()->year;
+            $results = Report::select(DB::raw('MONTH(created_at) as month, COUNT(*) as count'))
+                ->whereYear('created_at', $currentYear)
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->orderBy(DB::raw('MONTH(created_at)'))
+                ->get()
+                ->mapWithKeys(function ($item) {
+                    return [$item->month => $item->count];
+                })->toArray();
+
+            $data = [];
+            for ($month = 1; $month <= 12; $month++) {
+                $data[] = $results[$month] ?? 0;
+            }
+            return $data;
+        }
+
+        return view('packing.dashboard', [
+            'pie'       => json_encode(pie_packing()),
+            'report'    => json_encode(report_packing())
+        ]);
     }
 
     public function ProfilePacking() {

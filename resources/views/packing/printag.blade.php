@@ -45,7 +45,7 @@
             <div class="col-6 col-md-4">
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('packing.pdf') }}" class="btn btn-primary" style="margin-left:1.5px"><i class='bx bx-printer'></i></a>
-                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button>
+                    {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#print" style="margin-left: 2px"><i class='bx bx-filter-alt' ></i></button> --}}
                 </div>
             </div>
         </div>
