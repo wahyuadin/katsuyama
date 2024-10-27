@@ -24,5 +24,11 @@ class DatabaseSeeder extends Seeder
             'role'          => 'admin',
             'password'      => Hash::make('katsuyama2024'),
         ]);
+        User::create([
+            'nama'          => $faker->name,
+            'id_card'       => 'admin',
+            'role'          => 'admin',
+            'password'      => Hash::make('katsuyama2024'),
+        ]);
     }
 }
