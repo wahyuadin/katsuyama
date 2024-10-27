@@ -9,6 +9,8 @@ use App\Http\Controllers\PlaningController;
 use App\Http\Controllers\PrintagController;
 use App\Http\Controllers\ReportController;
 use App\Http\Middleware\SesiFalse;
+use App\Models\Printag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([SesiFalse::class])->group(function () {
@@ -113,4 +115,10 @@ Route::middleware(['role:packing'])->group(function () {
     });
 });
 Route::get('/logout', [AuthentifikasiController::class,'logout'])->name('logout');
+
+Route::get('tes', function () {
+    return view('pdf.printag', [
+        'data' => Printag::show_by_id(Auth::user()->id)
+    ]);
+});
 

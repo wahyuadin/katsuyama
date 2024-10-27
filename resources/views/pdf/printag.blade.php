@@ -60,7 +60,8 @@
                     style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 13pt;text-align: center; margin-top:5px; margin-bottom:5px">
-                        <b>Date</b></p>
+                        <b>Date</b>
+                    </p>
                 </td>
                 <td style="width:352pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="3">
@@ -99,7 +100,8 @@
                     style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 13pt;text-align: center; margin-top:5px; margin-bottom:5px">
-                        <b>Part Name</b></p>
+                        <b>Part Name</b>
+                    </p>
                 </td>
                 <td style="width:352pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="3">
@@ -123,20 +125,21 @@
                 </td>
                 <td
                     style="width:184pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                        {{ $dataItem->proses ? $dataItem->proses : '-' }}</p>
+                    <p style="margin-left: 1%; margin-top: 5px; margin-bottom: 5px">
+                        {{ \App\Models\User::where('nama', $dataItem->proses)->value('role') ? 'Operator ' . ucwords(\App\Models\User::where('nama', $dataItem->proses)->value('role')) : '-' }}
+                    </p>
                 </td>
                 <td
                     style="width:50pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 13pt;text-align: center;margin-top:5px; margin-bottom:5px">
-                        <b>PIC</b></p>
+                        <b>PIC</b>
+                    </p>
                 </td>
                 <td
                     style="width:118pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="margin-left: 1%; margin-top: 5px; margin-bottom: 5px">
-                        {{ \App\Models\User::where('nama', $dataItem->proses)->value('role') ? 'Operator ' . ucwords(\App\Models\User::where('nama', $dataItem->proses)->value('role')) : '-' }}
-                    </p>
+                    <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
+                        {{ $dataItem->proses ? $dataItem->proses : '-' }}</p>
                 </td>
             </tr>
             <tr style="height:15pt">
@@ -144,24 +147,26 @@
                     style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 13pt;text-align: center; margin-top:5px; margin-bottom:5px">
-                        <b>Next Proses</b></p>
+                        <b>Next Proses</b>
+                    </p>
                 </td>
                 <td
                     style="width:184pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                        {{ $dataItem->next_proses ? $dataItem->next_proses : '-' }}</p>
+                        {{ \App\Models\User::where('nama', $dataItem->next_proses)->value('role') ? 'Operator ' . ucwords(\App\Models\User::where('nama', $dataItem->next_proses)->value('role')) : '-' }}
+                    </p>
                 </td>
                 <td
                     style="width:50pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 13pt;text-align: center; margin-top:5px; margin-bottom:5px">
-                        <b>PIC</b></p>
+                        <b>PIC</b>
+                    </p>
                 </td>
                 <td
                     style="width:118pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                        {{ \App\Models\User::where('nama', $dataItem->next_proses)->value('role') ? 'Operator ' . ucwords(\App\Models\User::where('nama', $dataItem->next_proses)->value('role')) : '-' }}
-                    </p>
+                        {{ $dataItem->next_proses ? $dataItem->next_proses : '-' }}</p>
                 </td>
             </tr>
             <tr style="height:15pt">
@@ -169,35 +174,46 @@
                     colspan="2">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 14pt;text-align: center; margin-top:5px; margin-bottom:5px">
-                        <b>Lot No</b></p>
+                        <b>Lot No</b>
+                    </p>
                 </td>
                 <td style="width:168pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
                     <p class="s1"
                         style="padding-left: 2pt;text-indent: 0pt;line-height: 14pt;text-align: center; margin-top:3px; margin-bottom:5px">
-                        <b>Qty</b></p>
+                        <b>Qty</b>
+                    </p>
                 </td>
             </tr>
             <tr style="height:15pt">
                 <td style="width:258pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
                     @isset($dataItem->packing->loading->lot_no)
-                        <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                            {{ $dataItem->packing->loading->lot_no }}</p>
+                        <center>
+                            <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
+                                {{ $dataItem->packing->loading->lot_no }}</p>
+                        </center>
                     @endisset
                     @isset($dataItem->loading->lot_no)
-                        <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">{{ $dataItem->loading->lot_no }}</p>
+                        <center>
+                            <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">{{ $dataItem->loading->lot_no }}
+                            </p>
+                        </center>
                     @endisset
                 </td>
                 <td style="width:168pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
                     @isset($dataItem->packing->loading->planing->qty)
-                        <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                            {{ $dataItem->packing->loading->planing->qty }}</p>
+                        <center>
+                            <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
+                                {{ $dataItem->packing->loading->planing->qty }}</p>
+                        </center>
                     @endisset
                     @isset($dataItem->loading->planing->qty)
-                        <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
-                            {{ $dataItem->loading->planing->qty }}</p>
+                        <center>
+                            <p style="margin-left: 1%; margin-top:5px; margin-bottom:5px">
+                                {{ $dataItem->loading->planing->qty }}</p>
+                        </center>
                     @endisset
                 </td>
             </tr>
@@ -226,7 +242,8 @@
                     colspan="2">
                     <p class="s1"
                         style="padding-left: 1pt;text-indent: 0pt;line-height: 14pt;text-align: center;margin-top:15px; margin-bottom:15px">
-                        <b>Total</b></p>
+                        <b>Total</b>
+                    </p>
                 </td>
                 <td style="width:168pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
